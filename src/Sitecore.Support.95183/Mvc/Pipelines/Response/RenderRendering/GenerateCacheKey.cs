@@ -35,15 +35,15 @@ namespace Sitecore.Support.Mvc.Pipelines.Response.RenderRendering
                 {
                     currentDb = PageContext.Current.Database;
                 }
-                
+
                 if (currentDb != null)
                 {
                     renderingItem = currentDb.GetItem(rendering.RenderingItemPath);
                 }
-                if (rendering["ClearOnIndexUpdate"] == "1" || (renderingItem!=null&& renderingItem.Fields["F3E7E552-D7C8-469B-A150-69E4E14AB35C"].Value == "1"))
-                    {
-                        text2 += "_#index";
-                    }
+                if (rendering["Cache_ClearOnIndexUpdate"].ToBool() || (renderingItem != null && renderingItem.Fields["F3E7E552-D7C8-469B-A150-69E4E14AB35C"].Value == "1"))
+                {
+                    text2 += "_#index";
+                }
                 if (caching.VaryByData)
                 {
                     text2 += this.GetDataPart(rendering);
